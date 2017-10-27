@@ -36,4 +36,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    public function username()
+    {
+        return 'username';
+    }
+
+    public function sendFailedLoginResponse(Request $request)
+    {
+        Session::flash('failed', 'Su usuario o contraseña no son correctos');
+
+        return view('auth.login');
+    }
 }
