@@ -32,14 +32,12 @@ class ProductoController extends Controller
     public function create()
     {
         $producto = Producto::all()->last();
-        $categorias = Parametro::where("tipo_parametro_id",2)->get();
         $id = $producto->id + 1;
         $usuario = Auth::user()->id;
 
         $producto->identificador = 1;
         $producto->id = $id;
         $producto->usuario = $usuario;
-        $producto->categoria = $categorias;
         $producto->costo = "";
         $producto->nombre = "";
         $producto->descripcion = "";
@@ -58,7 +56,25 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->all();
+
+        echo "<pre>";
+        print_r($datos);
+        echo "</pre>";
+        $producto = new Producto;
+        $producto->fill($datos);
+        $producto->save();
+
+        
+        if($producto->save()){
+            return response()->json([
+            "Exito" => "true"
+        ]);
+        }else{
+           return response()->json([
+            "Error" => "false"
+        ]); 
+        }
     }
 
     /**
@@ -83,7 +99,6 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
 
         $categorias = Parametro::where("tipo_parametro_id",2)->get();
-        $producto->categoria = $categorias;
         $producto->categoria_value = $producto->categorias->nombre;
         $producto->identificador = 2;
 

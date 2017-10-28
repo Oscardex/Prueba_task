@@ -11,7 +11,7 @@ class Producto extends Model
     protected $table="productos";
 
     protected $fillable=[
-    	"id","nombre","descripcion","costo","categoria"
+    	"id","nombre","descripcion","costo","categoria","usuario"
     ];
 
     public function categorias()

@@ -9,7 +9,6 @@ app.controller("ItemsController",function($scope,$http){
 	$scope.edicion = [];
 	$scope.categorias = [];
 	$scope.loading= true;
-
 	vistaProducto();
 
   	function vistaProducto(){
@@ -22,61 +21,55 @@ app.controller("ItemsController",function($scope,$http){
 
 		});	
   	};
-
-  	function CrearProducto(){
+  	function CrearProducto(producto){
 		
-		$http.post("ProductoCrear",$scope.edicion).then(function(data){
-			console.log(data);
+		$http.post("ProductoCrear",producto).then(function(data){
 			vistaProducto();
 		},function(error){
 			console.log(error);
 		});	
 	};
 
-
 	$scope.agregar= function(item){
 		
 		$http.post("ProductoAgregar").then(function(data){
-			console.log(data.data.productos.categoria);
 			$scope.edicion = data.data.productos;
-			$scope.categorias = data.data.productos.categoria;
 
-			vistaProducto();
 		},function(error){
 			console.log(error);
 		});	
 	};
 
 	
-
 	$scope.editar = function(item){
 			$http.post("Productos/"+item).then(function(data){
-			console.log(data.data.productos);
-			
+			;
 				$scope.edicion = data.data.producto;
-				$scope.categorias = data.data.producto.categoria;
 			},function(error){
 				console.log(error);
 			});	
 	};
-
 	$scope.editarProducto = function(id,identificador){
 		if(identificador == 2){
 			$http.post("ProductosGuardar/"+id,$scope.edicion).then(function(data){
-				console.log(data);
+				alert("Producto editado exitosamente");
 				vistaProducto();
 			},function(error){
 				console.log(error);
 			});
 		}else if(identificador == 1){
-			CrearProducto();
+			CrearProducto($scope.edicion);
+			alert("Producto creado exitosamente");
+			vistaProducto();
+			
 		}
 
 	};
+
 	$scope.eliminarProducto = function(id){
 		if(confirm("Desea Eliminar el producto")){
 				$http.post("ProductosEliminar/"+id).then(function(data){
-				console.log(data);
+				alert("Producto eliminado");
 				vistaProducto();
 							
 			},function(error){
