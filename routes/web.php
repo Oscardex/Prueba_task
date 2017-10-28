@@ -22,3 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+//Peticion de productos
+Route::get('Productos','Producto\ProductoController@index');
+Route::post('ProductoAgregar','Producto\ProductoController@create');
+Route::post('ProductoCrear','Producto\ProductoController@store');
+Route::post('Productos/{id}','Producto\ProductoController@edit');
+Route::post('ProductosGuardar/{id}','Producto\ProductoController@update');
+Route::post('ProductosEliminar/{id}','Producto\ProductoController@destroy');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="HomeProductos">
 <head>  
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -13,6 +13,11 @@
 
     <!-- Styles -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('css/cards.css')}}" rel="stylesheet">
+
+    <!-- Animacion de cubo -->
+
+    <link rel="stylesheet" type="text/css" href="{{asset('css/carga_animacion.css')}}">
 
     <!-- Scripts -->
     <script>
@@ -22,9 +27,12 @@
     </script>
     <!-- Angular JS 1.6 -->    
     <script src="{{ asset('Angular/app/angular.min.js') }}"></script>
+    <!-- Controladores para el funcionamiento de angular y las diferentes peticiones -->    
+    <script src="{{ asset('Angular/controller/Items.js')}}"></script>
 </head>
-<body>
-    <div id="app">
+<body ng-controller="ItemsController">
+<!-- Comienzo lenguaje Angular --> 
+     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">

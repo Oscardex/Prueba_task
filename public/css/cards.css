@@ -1,0 +1,7 @@
+.panel-body.ng-scope{
+	display: inline-block !important;
+	width: 25%;
+}
+.panel-body.ng-scope .card-personalizada .card-block{
+	padding-bottom: 10px;
+}
